@@ -1,0 +1,1 @@
+Test app's purpose is to test dev environment and deployment to a Java web server.
