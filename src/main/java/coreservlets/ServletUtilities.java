@@ -1,22 +1,18 @@
 package coreservlets;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
 
 /** Some simple time savers. Static methods. */
-
 public class ServletUtilities {
   public static String headWithTitle(String title) {
-    return("<!DOCTYPE html>\n" +
-           "<html>\n" +
-           "<head><title>" + title + "</title></head>\n");
+    return ("<!DOCTYPE html>\n" + "<html>\n" + "<head><title>" + title + "</title></head>\n");
   }
 
-  /** Read a parameter with the specified name, convert it
-   *  to an int, and return it. Return the designated default
-   *  value if the parameter doesn't exist or if it is an
-   *  illegal integer format.
+  /**
+   * Read a parameter with the specified name, convert it to an int, and return it. Return
+   * the designated default value if the parameter doesn't exist or if it is an illegal
+   * integer format.
    */
-  
   public static int getIntParameter(HttpServletRequest request,
                                     String paramName,
                                     int defaultValue) {
@@ -24,14 +20,14 @@ public class ServletUtilities {
     int paramValue;
     try {
       paramValue = Integer.parseInt(paramString);
-    } catch(Exception nfe) { // null or bad format
+    }
+    catch (Exception nfe) { // null or bad format
       paramValue = defaultValue;
     }
-    return(paramValue);
+    return (paramValue);
   }
 
   /** Reads param and converts to double. Default if problem. */
-  
   public static double getDoubleParameter(HttpServletRequest request,
                                           String paramName,
                                           double defaultValue) {
@@ -39,13 +35,14 @@ public class ServletUtilities {
     double paramValue;
     try {
       paramValue = Double.parseDouble(paramString);
-    } catch(Exception nfe) { // null or bad format
+    }
+    catch (Exception nfe) { // null or bad format
       paramValue = defaultValue;
     }
-    return(paramValue);
+    return (paramValue);
   }
 
-  /** Replaces characters that have special HTML meanings
+/** Replaces characters that have special HTML meanings
    *  with their corresponding HTML character entities.
    *  Specifically, given a string, this method replaces all 
    *  occurrences of  
@@ -58,42 +55,59 @@ public class ServletUtilities {
    *  could not safely be inserted in a Web page.
    *  }
    */
-
   public static String filter(String input) {
     if (!hasSpecialChars(input)) {
-      return(input);
+      return (input);
     }
     StringBuilder filtered = new StringBuilder(input.length());
     char c;
-    for(int i=0; i<input.length(); i++) {
+    for (int i = 0; i < input.length(); i++) {
       c = input.charAt(i);
-      switch(c) {
-        case '<': filtered.append("&lt;"); break;
-        case '>': filtered.append("&gt;"); break;
-        case '"': filtered.append("&quot;"); break;
-        case '&': filtered.append("&amp;"); break;
-        default: filtered.append(c);
+      switch (c) {
+        case '<':
+          filtered.append("&lt;");
+          break;
+        case '>':
+          filtered.append("&gt;");
+          break;
+        case '"':
+          filtered.append("&quot;");
+          break;
+        case '&':
+          filtered.append("&amp;");
+          break;
+        default:
+          filtered.append(c);
       }
     }
-    return(filtered.toString());
+    return (filtered.toString());
   }
 
   private static boolean hasSpecialChars(String input) {
     boolean flag = false;
     if ((input != null) && (input.length() > 0)) {
       char c;
-      for(int i=0; i<input.length(); i++) {
+      for (int i = 0; i < input.length(); i++) {
         c = input.charAt(i);
-        switch(c) {
-          case '<': flag = true; break;
-          case '>': flag = true; break;
-          case '"': flag = true; break;
-          case '&': flag = true; break;
+        switch (c) {
+          case '<':
+            flag = true;
+            break;
+          case '>':
+            flag = true;
+            break;
+          case '"':
+            flag = true;
+            break;
+          case '&':
+            flag = true;
+            break;
         }
       }
     }
-    return(flag);
+    return (flag);
   }
-  
-  private ServletUtilities() {} // Uninstantiatable class
+
+  private ServletUtilities() {
+  } // Uninstantiatable class
 }
