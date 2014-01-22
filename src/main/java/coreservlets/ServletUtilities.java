@@ -59,6 +59,7 @@ public class ServletUtilities {
     if (!hasSpecialChars(input)) {
       return (input);
     }
+
     StringBuilder filtered = new StringBuilder(input.length());
     char c;
     for (int i = 0; i < input.length(); i++) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head><title>Sample JSP Page</title></head>
 <body>
