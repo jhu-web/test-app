@@ -9,7 +9,7 @@
 
 	<name>Test App</name>
 	<description>Test app's purpose is to test dev environment and deployment to a Java web server.</description>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -20,6 +20,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>test-app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
